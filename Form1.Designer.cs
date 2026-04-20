@@ -34,12 +34,13 @@
             this.pgbRAM = new System.Windows.Forms.ProgressBar();
             this.pgbCPU = new System.Windows.Forms.ProgressBar();
             this.timerResource = new System.Windows.Forms.Timer(this.components);
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblRAM
             // 
             this.lblRAM.AutoSize = true;
-            this.lblRAM.Location = new System.Drawing.Point(180, 106);
+            this.lblRAM.Location = new System.Drawing.Point(53, 100);
             this.lblRAM.Name = "lblRAM";
             this.lblRAM.Size = new System.Drawing.Size(58, 24);
             this.lblRAM.TabIndex = 0;
@@ -48,7 +49,7 @@
             // lblCPU
             // 
             this.lblCPU.AutoSize = true;
-            this.lblCPU.Location = new System.Drawing.Point(180, 172);
+            this.lblCPU.Location = new System.Drawing.Point(53, 166);
             this.lblCPU.Name = "lblCPU";
             this.lblCPU.Size = new System.Drawing.Size(55, 24);
             this.lblCPU.TabIndex = 1;
@@ -56,14 +57,14 @@
             // 
             // pgbRAM
             // 
-            this.pgbRAM.Location = new System.Drawing.Point(268, 106);
+            this.pgbRAM.Location = new System.Drawing.Point(141, 100);
             this.pgbRAM.Name = "pgbRAM";
             this.pgbRAM.Size = new System.Drawing.Size(755, 41);
             this.pgbRAM.TabIndex = 2;
             // 
             // pgbCPU
             // 
-            this.pgbCPU.Location = new System.Drawing.Point(268, 172);
+            this.pgbCPU.Location = new System.Drawing.Point(141, 166);
             this.pgbCPU.Name = "pgbCPU";
             this.pgbCPU.Size = new System.Drawing.Size(755, 41);
             this.pgbCPU.TabIndex = 3;
@@ -73,11 +74,22 @@
             this.timerResource.Enabled = true;
             this.timerResource.Interval = 1000;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("굴림", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.Location = new System.Drawing.Point(19, 23);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(555, 43);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "System Resource Monitor";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1276, 700);
+            this.ClientSize = new System.Drawing.Size(944, 259);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.pgbCPU);
             this.Controls.Add(this.pgbRAM);
             this.Controls.Add(this.lblCPU);
@@ -96,6 +108,7 @@
         private System.Windows.Forms.ProgressBar pgbRAM;
         private System.Windows.Forms.ProgressBar pgbCPU;
         private System.Windows.Forms.Timer timerResource;
+        private System.Windows.Forms.Label label1;
     }
 }
 
