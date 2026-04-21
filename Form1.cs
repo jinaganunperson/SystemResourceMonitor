@@ -53,15 +53,25 @@ namespace Pr
             float cpuUsage = cpuCounter.NextValue();
             float ramAvailable = ramCounter.NextValue();
 
+            float totalRamMB = 8192;
+
+            // 2. 사용 중인 용량 계산
+            float ramUsed = totalRamMB - ramAvailable;
+
+            // 3. 사용 퍼센트 계산 (0~100%)
+            float ramUsagePercent = (ramUsed / totalRamMB) * 100;
+
             // 2. 화면 갱신 (숫자 표시)
             lblCPU.Text = $"CPU 사용량: {cpuUsage:F1}%";
-            lblRAM.Text = $"사용 가능한 RAM: {ramAvailable:N0} MB";
+            lblRAM.Text = $"RAM 사용량: {ramUsagePercent:F1}% ({ramUsed:N0}MB / {totalRamMB:N0}MB)";
 
             // 3. 프로그레스바 업데이트
             pgbCPU.Value = (int)cpuUsage;
 
-            // RAM은 전체 용량 대비 남은 용량을 계산해야 하므로 일단 수치만 표시하거나 
-            // 최대치를 설정해두고 사용량으로 환산해서 넣으세요.
+            if (ramUsagePercent >= 0 && ramUsagePercent <= 100)
+            {
+                pgbRAM.Value = (int)ramUsagePercent;
+            }
         }
     }
 }
