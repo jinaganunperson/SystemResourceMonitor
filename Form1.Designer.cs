@@ -57,14 +57,15 @@
             // 
             // pgbRAM
             // 
-            this.pgbRAM.Location = new System.Drawing.Point(141, 100);
+            this.pgbRAM.Location = new System.Drawing.Point(335, 100);
+            this.pgbRAM.MarqueeAnimationSpeed = 8192;
             this.pgbRAM.Name = "pgbRAM";
             this.pgbRAM.Size = new System.Drawing.Size(755, 41);
             this.pgbRAM.TabIndex = 2;
             // 
             // pgbCPU
             // 
-            this.pgbCPU.Location = new System.Drawing.Point(141, 166);
+            this.pgbCPU.Location = new System.Drawing.Point(335, 166);
             this.pgbCPU.Name = "pgbCPU";
             this.pgbCPU.Size = new System.Drawing.Size(755, 41);
             this.pgbCPU.TabIndex = 3;
@@ -89,7 +90,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(944, 259);
+            this.ClientSize = new System.Drawing.Size(1135, 242);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pgbCPU);
             this.Controls.Add(this.pgbRAM);
