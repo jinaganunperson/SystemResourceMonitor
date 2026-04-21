@@ -1,6 +1,6 @@
 ﻿namespace Pr
 {
-    partial class Form1
+    public partial class Form1
     {
         /// <summary>
         /// 필수 디자이너 변수입니다.
@@ -73,6 +73,7 @@
             // 
             this.timerResource.Enabled = true;
             this.timerResource.Interval = 1000;
+            this.timerResource.Tick += new System.EventHandler(this.timerResource_Tick_1);
             // 
             // label1
             // 
