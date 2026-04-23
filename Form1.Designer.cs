@@ -100,7 +100,7 @@
             this.lvwTopProcesses.Size = new System.Drawing.Size(1032, 303);
             this.lvwTopProcesses.TabIndex = 5;
             this.lvwTopProcesses.UseCompatibleStateImageBehavior = false;
-            this.lvwTopProcesses.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            this.lvwTopProcesses.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader1
             // 

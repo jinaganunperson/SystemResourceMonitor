@@ -4,9 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Linq; // LINQ는 맨 위에 있어야 합니다.
 using System.Windows.Forms;
 
 namespace Pr
@@ -15,6 +13,7 @@ namespace Pr
     {
         private PerformanceCounter cpuCounter;
         private PerformanceCounter ramCounter;
+
         public Form1()
         {
             InitializeComponent();
@@ -23,60 +22,69 @@ namespace Pr
 
         private void SetupCounters()
         {
-            // CPU 카운터 설정 (전체 프로세서의 사용 시간 %)
             cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
-
-            // RAM 카운터 설정 (사용 가능한 메가바이트 단위)
             ramCounter = new PerformanceCounter("Memory", "Available MBytes");
+
+            // 초기값 0 방지를 위해 한 번씩 미리 호출
+            cpuCounter.NextValue();
+            ramCounter.NextValue();
         }
 
         private void timerResource_Tick(object sender, EventArgs e)
         {
-            // 1. 데이터 읽기
-            float cpuUsage = cpuCounter.NextValue();
-            float ramAvailable = ramCounter.NextValue();
+            
+        }
 
-            // 2. 화면 갱신 (숫자 표시)
-            lblCPU.Text = $"CPU 사용량: {cpuUsage:F1}%";
-            lblRAM.Text = $"사용 가능한 RAM: {ramAvailable:N0} MB";
+        // 메모리 많이 쓰는 순서대로 TOP 5 가져오기
+        private void UpdateTopProcessesByMemory()
+        {
+            try
+            {
+                var topMemory = Process.GetProcesses()
+                    .OrderByDescending(p => {
+                        try { return p.WorkingSet64; } // 메모리 사용량 기준
+                        catch { return 0; }
+                    })
+                    .Take(5)
+                    .ToList();
 
-            // 3. 프로그레스바 업데이트
-            pgbCPU.Value = (int)cpuUsage;
-
-            // RAM은 전체 용량 대비 남은 용량을 계산해야 하므로 일단 수치만 표시하거나 
-            // 최대치를 설정해두고 사용량으로 환산해서 넣으세요.
+                lvwTopProcesses.BeginUpdate();
+                lvwTopProcesses.Items.Clear(); // 리스트뷰 이름 확인하세요!
+                foreach (var p in topMemory)
+                {
+                    double memMB = p.WorkingSet64 / (1024.0 * 1024.0);
+                    ListViewItem item = new ListViewItem(p.ProcessName);
+                    item.SubItems.Add($"{memMB:F1} MB");
+                    lvwTopProcesses.Items.Add(item);
+                }
+                lvwTopProcesses.EndUpdate();
+            }
+            catch { /* 접근 거부된 프로세스는 무시 */ }
         }
 
         private void timerResource_Tick_1(object sender, EventArgs e)
         {
-            // 1. 데이터 읽기
+            // 1. 시스템 전체 리소스 데이터 읽기
             float cpuUsage = cpuCounter.NextValue();
             float ramAvailable = ramCounter.NextValue();
 
+            // 8GB 기준 (윤서님 사양에 맞게 조정하세요)
             float totalRamMB = 8192;
-
-            // 2. 사용 중인 용량 계산
             float ramUsed = totalRamMB - ramAvailable;
-
-            // 3. 사용 퍼센트 계산 (0~100%)
             float ramUsagePercent = (ramUsed / totalRamMB) * 100;
 
-            // 2. 화면 갱신 (숫자 표시)
+            // 2. UI 업데이트 (상단 숫자 및 프로그레스바)
             lblCPU.Text = $"CPU 사용량: {cpuUsage:F1}%";
             lblRAM.Text = $"RAM 사용량: {ramUsagePercent:F1}% ({ramUsed:N0}MB / {totalRamMB:N0}MB)";
 
-            // 3. 프로그레스바 업데이트
-            pgbCPU.Value = (int)cpuUsage;
-
+            pgbCPU.Value = (int)Math.Min(cpuUsage, 100); // 100 초과 방지
             if (ramUsagePercent >= 0 && ramUsagePercent <= 100)
             {
                 pgbRAM.Value = (int)ramUsagePercent;
             }
-        }
 
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
+            // 3. 프로세스 TOP 5 업데이트 함수 호출
+            UpdateTopProcessesByMemory();
         }
     }
 }
