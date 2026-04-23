@@ -35,6 +35,9 @@
             this.pgbCPU = new System.Windows.Forms.ProgressBar();
             this.timerResource = new System.Windows.Forms.Timer(this.components);
             this.label1 = new System.Windows.Forms.Label();
+            this.lvwTopProcesses = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lblRAM
@@ -86,11 +89,35 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "System Resource Monitor";
             // 
+            // lvwTopProcesses
+            // 
+            this.lvwTopProcesses.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2});
+            this.lvwTopProcesses.HideSelection = false;
+            this.lvwTopProcesses.Location = new System.Drawing.Point(57, 244);
+            this.lvwTopProcesses.Name = "lvwTopProcesses";
+            this.lvwTopProcesses.Size = new System.Drawing.Size(1032, 303);
+            this.lvwTopProcesses.TabIndex = 5;
+            this.lvwTopProcesses.UseCompatibleStateImageBehavior = false;
+            this.lvwTopProcesses.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "프로세스명";
+            this.columnHeader1.Width = 150;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "CPU (%)";
+            this.columnHeader2.Width = 80;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1135, 242);
+            this.ClientSize = new System.Drawing.Size(1135, 563);
+            this.Controls.Add(this.lvwTopProcesses);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pgbCPU);
             this.Controls.Add(this.pgbRAM);
@@ -111,6 +138,9 @@
         private System.Windows.Forms.ProgressBar pgbCPU;
         private System.Windows.Forms.Timer timerResource;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ListView lvwTopProcesses;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
     }
 }
 

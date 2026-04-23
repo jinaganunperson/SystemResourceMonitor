@@ -73,5 +73,10 @@ namespace Pr
                 pgbRAM.Value = (int)ramUsagePercent;
             }
         }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
