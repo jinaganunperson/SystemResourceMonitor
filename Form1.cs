@@ -86,5 +86,39 @@ namespace Pr
             // 3. 프로세스 TOP 5 업데이트 함수 호출
             UpdateTopProcessesByMemory();
         }
+
+            private void CheckResourceDanger(float cpu, float ramPercent)
+            {
+            // CPU 위험 감지 (90% 이상)
+            if (cpu >= 90)
+            {
+                lblCPU.ForeColor = Color.Red; // 글자색 빨강
+                pgbCPU.ForeColor = Color.Red; // 프로그레스바 색상 (컴포넌트 설정에 따라 다름)
+            }
+            else if (cpu >= 70)
+            {
+                lblCPU.ForeColor = Color.Orange; // 주의 단계
+            }
+            else
+            {
+                lblCPU.ForeColor = Color.Black; // 정상
+            }
+
+            // RAM 위험 감지 (90% 이상)
+            if (ramPercent >= 90)
+            {
+                lblRAM.ForeColor = Color.Red;
+            }
+            else
+            {
+                lblRAM.ForeColor = Color.Black;
+            }
+        
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
