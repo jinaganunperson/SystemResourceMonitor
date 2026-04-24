@@ -113,7 +113,18 @@ namespace Pr
             {
                 lblRAM.ForeColor = Color.Black;
             }
-        
+
+            if (cpu >= 90 || ramPercent >= 90)
+            {
+                // 배경색을 연한 빨강으로 변경하여 긴급 상황 표시
+                this.BackColor = Color.MistyRose;
+            }
+            else
+            {
+                // 다시 기본 시스템 배경색으로 복구
+                this.BackColor = SystemColors.Control;
+            }
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
