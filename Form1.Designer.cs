@@ -39,6 +39,7 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblUptime = new System.Windows.Forms.Label();
+            this.btnOpenTaskMgr = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblRAM
@@ -116,17 +117,28 @@
             // lblUptime
             // 
             this.lblUptime.AutoSize = true;
-            this.lblUptime.Location = new System.Drawing.Point(700, 31);
+            this.lblUptime.Location = new System.Drawing.Point(758, 31);
             this.lblUptime.Name = "lblUptime";
             this.lblUptime.Size = new System.Drawing.Size(106, 24);
             this.lblUptime.TabIndex = 6;
             this.lblUptime.Text = "가동시간";
+            // 
+            // btnOpenTaskMgr
+            // 
+            this.btnOpenTaskMgr.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnOpenTaskMgr.Location = new System.Drawing.Point(580, 26);
+            this.btnOpenTaskMgr.Name = "btnOpenTaskMgr";
+            this.btnOpenTaskMgr.Size = new System.Drawing.Size(150, 35);
+            this.btnOpenTaskMgr.TabIndex = 7;
+            this.btnOpenTaskMgr.Text = "작업 관리자";
+            this.btnOpenTaskMgr.UseVisualStyleBackColor = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1135, 563);
+            this.Controls.Add(this.btnOpenTaskMgr);
             this.Controls.Add(this.lblUptime);
             this.Controls.Add(this.lvwTopProcesses);
             this.Controls.Add(this.label1);
@@ -154,6 +166,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.Label lblUptime;
+        private System.Windows.Forms.Button btnOpenTaskMgr;
     }
 }
 
