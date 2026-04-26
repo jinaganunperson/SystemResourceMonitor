@@ -38,6 +38,7 @@
             this.lvwTopProcesses = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lblUptime = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblRAM
@@ -112,11 +113,21 @@
             this.columnHeader2.Text = "CPU (%)";
             this.columnHeader2.Width = 80;
             // 
+            // lblUptime
+            // 
+            this.lblUptime.AutoSize = true;
+            this.lblUptime.Location = new System.Drawing.Point(700, 31);
+            this.lblUptime.Name = "lblUptime";
+            this.lblUptime.Size = new System.Drawing.Size(106, 24);
+            this.lblUptime.TabIndex = 6;
+            this.lblUptime.Text = "가동시간";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1135, 563);
+            this.Controls.Add(this.lblUptime);
             this.Controls.Add(this.lvwTopProcesses);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pgbCPU);
@@ -142,6 +153,7 @@
         private System.Windows.Forms.ListView lvwTopProcesses;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.Label lblUptime;
     }
 }
 
