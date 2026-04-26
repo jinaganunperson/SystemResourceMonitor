@@ -45,18 +45,20 @@
             // lblRAM
             // 
             this.lblRAM.AutoSize = true;
-            this.lblRAM.Location = new System.Drawing.Point(53, 100);
+            this.lblRAM.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblRAM.Location = new System.Drawing.Point(53, 109);
             this.lblRAM.Name = "lblRAM";
-            this.lblRAM.Size = new System.Drawing.Size(58, 24);
+            this.lblRAM.Size = new System.Drawing.Size(85, 32);
             this.lblRAM.TabIndex = 0;
             this.lblRAM.Text = "RAM";
             // 
             // lblCPU
             // 
             this.lblCPU.AutoSize = true;
-            this.lblCPU.Location = new System.Drawing.Point(53, 166);
+            this.lblCPU.Font = new System.Drawing.Font("굴림", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lblCPU.Location = new System.Drawing.Point(55, 175);
             this.lblCPU.Name = "lblCPU";
-            this.lblCPU.Size = new System.Drawing.Size(55, 24);
+            this.lblCPU.Size = new System.Drawing.Size(83, 32);
             this.lblCPU.TabIndex = 1;
             this.lblCPU.Text = "CPU";
             // 
@@ -117,18 +119,20 @@
             // lblUptime
             // 
             this.lblUptime.AutoSize = true;
+            this.lblUptime.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lblUptime.Location = new System.Drawing.Point(758, 32);
             this.lblUptime.Name = "lblUptime";
-            this.lblUptime.Size = new System.Drawing.Size(106, 24);
+            this.lblUptime.Size = new System.Drawing.Size(110, 24);
             this.lblUptime.TabIndex = 6;
             this.lblUptime.Text = "가동시간";
             // 
             // btnOpenTaskMgr
             // 
             this.btnOpenTaskMgr.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnOpenTaskMgr.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btnOpenTaskMgr.Location = new System.Drawing.Point(580, 23);
             this.btnOpenTaskMgr.Name = "btnOpenTaskMgr";
-            this.btnOpenTaskMgr.Size = new System.Drawing.Size(150, 43);
+            this.btnOpenTaskMgr.Size = new System.Drawing.Size(172, 43);
             this.btnOpenTaskMgr.TabIndex = 7;
             this.btnOpenTaskMgr.Text = "작업 관리자";
             this.btnOpenTaskMgr.UseVisualStyleBackColor = false;
@@ -148,7 +152,7 @@
             this.Controls.Add(this.lblCPU);
             this.Controls.Add(this.lblRAM);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "System Resource Monitor";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
