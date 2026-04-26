@@ -116,5 +116,19 @@ namespace Pr
         // 사용하지 않는 이벤트 (지워도 됨)
         private void Form1_Load(object sender, EventArgs e) { }
         private void timerResource_Tick(object sender, EventArgs e) { }
+
+        private void btnOpenTaskMgr_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // 윈도우 시스템 폴더에 있는 taskmgr.exe를 실행합니다.
+                Process.Start("taskmgr.exe");
+            }
+            catch (Exception ex)
+            {
+                // 혹시라도 실행에 실패할 경우 에러 메시지를 띄웁니다.
+                MessageBox.Show("작업 관리자를 실행할 수 없습니다: " + ex.Message);
+            }
+        }
     }
 }

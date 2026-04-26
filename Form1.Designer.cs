@@ -117,7 +117,7 @@
             // lblUptime
             // 
             this.lblUptime.AutoSize = true;
-            this.lblUptime.Location = new System.Drawing.Point(758, 31);
+            this.lblUptime.Location = new System.Drawing.Point(758, 32);
             this.lblUptime.Name = "lblUptime";
             this.lblUptime.Size = new System.Drawing.Size(106, 24);
             this.lblUptime.TabIndex = 6;
@@ -126,12 +126,13 @@
             // btnOpenTaskMgr
             // 
             this.btnOpenTaskMgr.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnOpenTaskMgr.Location = new System.Drawing.Point(580, 26);
+            this.btnOpenTaskMgr.Location = new System.Drawing.Point(580, 23);
             this.btnOpenTaskMgr.Name = "btnOpenTaskMgr";
-            this.btnOpenTaskMgr.Size = new System.Drawing.Size(150, 35);
+            this.btnOpenTaskMgr.Size = new System.Drawing.Size(150, 43);
             this.btnOpenTaskMgr.TabIndex = 7;
             this.btnOpenTaskMgr.Text = "작업 관리자";
             this.btnOpenTaskMgr.UseVisualStyleBackColor = false;
+            this.btnOpenTaskMgr.Click += new System.EventHandler(this.btnOpenTaskMgr_Click);
             // 
             // Form1
             // 
