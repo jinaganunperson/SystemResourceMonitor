@@ -40,6 +40,7 @@
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblUptime = new System.Windows.Forms.Label();
             this.btnOpenTaskMgr = new System.Windows.Forms.Button();
+            this.btnDarkMode = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblRAM
@@ -122,7 +123,7 @@
             // 
             this.lblUptime.AutoSize = true;
             this.lblUptime.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblUptime.Location = new System.Drawing.Point(758, 32);
+            this.lblUptime.Location = new System.Drawing.Point(758, 45);
             this.lblUptime.Name = "lblUptime";
             this.lblUptime.Size = new System.Drawing.Size(110, 24);
             this.lblUptime.TabIndex = 6;
@@ -132,7 +133,7 @@
             // 
             this.btnOpenTaskMgr.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnOpenTaskMgr.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnOpenTaskMgr.Location = new System.Drawing.Point(580, 23);
+            this.btnOpenTaskMgr.Location = new System.Drawing.Point(580, 36);
             this.btnOpenTaskMgr.Name = "btnOpenTaskMgr";
             this.btnOpenTaskMgr.Size = new System.Drawing.Size(172, 43);
             this.btnOpenTaskMgr.TabIndex = 7;
@@ -140,11 +141,24 @@
             this.btnOpenTaskMgr.UseVisualStyleBackColor = false;
             this.btnOpenTaskMgr.Click += new System.EventHandler(this.btnOpenTaskMgr_Click);
             // 
+            // btnDarkMode
+            // 
+            this.btnDarkMode.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnDarkMode.Font = new System.Drawing.Font("굴림", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btnDarkMode.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnDarkMode.Location = new System.Drawing.Point(935, 5);
+            this.btnDarkMode.Name = "btnDarkMode";
+            this.btnDarkMode.Size = new System.Drawing.Size(190, 36);
+            this.btnDarkMode.TabIndex = 8;
+            this.btnDarkMode.Text = "다크모드";
+            this.btnDarkMode.UseVisualStyleBackColor = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1135, 563);
+            this.Controls.Add(this.btnDarkMode);
             this.Controls.Add(this.btnOpenTaskMgr);
             this.Controls.Add(this.lblUptime);
             this.Controls.Add(this.lvwTopProcesses);
@@ -174,6 +188,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.Label lblUptime;
         private System.Windows.Forms.Button btnOpenTaskMgr;
+        private System.Windows.Forms.Button btnDarkMode;
     }
 }
 
