@@ -64,6 +64,7 @@
             // 
             // pgbRAM
             // 
+            this.pgbRAM.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.pgbRAM.Location = new System.Drawing.Point(335, 100);
             this.pgbRAM.MarqueeAnimationSpeed = 8192;
             this.pgbRAM.Name = "pgbRAM";
@@ -72,6 +73,7 @@
             // 
             // pgbCPU
             // 
+            this.pgbCPU.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.pgbCPU.Location = new System.Drawing.Point(335, 166);
             this.pgbCPU.Name = "pgbCPU";
             this.pgbCPU.Size = new System.Drawing.Size(755, 41);
