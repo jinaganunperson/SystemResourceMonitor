@@ -148,7 +148,7 @@
             this.btnDarkMode.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnDarkMode.Location = new System.Drawing.Point(935, 5);
             this.btnDarkMode.Name = "btnDarkMode";
-            this.btnDarkMode.Size = new System.Drawing.Size(190, 36);
+            this.btnDarkMode.Size = new System.Drawing.Size(190, 41);
             this.btnDarkMode.TabIndex = 8;
             this.btnDarkMode.Text = "다크모드";
             this.btnDarkMode.UseVisualStyleBackColor = false;
