@@ -11,8 +11,10 @@ namespace Pr
 {
     public partial class Form1 : Form
     {
+        // 1. 클래스 바로 아래에 변수들을 선언합니다. (최상위문 오류 방지)
         private PerformanceCounter cpuCounter;
         private PerformanceCounter ramCounter;
+        private bool isDarkMode = false; // 다크모드 상태 저장
 
         public Form1()
         {
@@ -24,24 +26,20 @@ namespace Pr
         {
             cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
             ramCounter = new PerformanceCounter("Memory", "Available MBytes");
-
             cpuCounter.NextValue();
             ramCounter.NextValue();
         }
 
-        // 1초마다 실행되는 메인 타이머 함수
+        // 메인 타이머 이벤트
         private void timerResource_Tick_1(object sender, EventArgs e)
         {
-            // 1. 데이터 읽기
             float cpuUsage = cpuCounter.NextValue();
             float ramAvailable = ramCounter.NextValue();
 
-            // 8GB 기준 (필요시 수정)
             float totalRamMB = 8192;
             float ramUsed = totalRamMB - ramAvailable;
             float ramUsagePercent = (ramUsed / totalRamMB) * 100;
 
-            // 2. UI 업데이트
             lblCPU.Text = $"CPU 사용량: {cpuUsage:F1}%";
             lblRAM.Text = $"RAM 사용량: {ramUsagePercent:F1}% ({ramUsed:N0}MB / {totalRamMB:N0}MB)";
 
@@ -51,32 +49,80 @@ namespace Pr
                 pgbRAM.Value = (int)ramUsagePercent;
             }
 
-            // 3. 추가 기능들 호출 (이름이 딱딱 맞아야 함)
+            // 기능들 호출
             UpdateTopProcessesByMemory();
             UpdateSystemUptime();
             CheckResourceDanger(cpuUsage, ramUsagePercent);
         }
 
-        // [기능 1] 메모리 TOP 5 업데이트
+        // [다크모드 버튼 클릭 이벤트]
+        private void btnDarkMode_Click(object sender, EventArgs e)
+        {
+            isDarkMode = !isDarkMode; // 상태 반전
+            btnDarkMode.Text = isDarkMode ? "라이트 모드" : "다크 모드";
+            ApplyDarkMode(isDarkMode);
+        }
+
+        // [테마 적용 함수]
+        private void ApplyDarkMode(bool isDark)
+        {
+            Color backColor = isDark ? Color.FromArgb(45, 45, 48) : SystemColors.Control;
+            Color foreColor = isDark ? Color.White : Color.Black;
+
+            this.BackColor = backColor;
+
+            foreach (Control c in this.Controls)
+            {
+                if (c is ListView)
+                {
+                    c.BackColor = isDark ? Color.FromArgb(30, 30, 30) : Color.White;
+                }
+                else
+                {
+                    c.BackColor = backColor;
+                }
+                c.ForeColor = foreColor;
+            }
+        }
+
+        // [가동 시간 업데이트]
+        private void UpdateSystemUptime()
+        {
+            uint tickCount = (uint)Environment.TickCount;
+            TimeSpan uptime = TimeSpan.FromMilliseconds(tickCount);
+            lblUptime.Text = string.Format("가동 시간: {0}일 {1}시간 {2}분 {3}초",
+                uptime.Days, uptime.Hours, uptime.Minutes, uptime.Seconds);
+        }
+
+        // [위험 감지 - 다크모드 대응 버전]
+        private void CheckResourceDanger(float cpu, float ramPercent)
+        {
+            Color defaultColor = isDarkMode ? Color.White : Color.Black;
+
+            lblCPU.ForeColor = (cpu >= 90) ? Color.Red : (cpu >= 70 ? Color.Orange : defaultColor);
+            lblRAM.ForeColor = (ramPercent >= 90) ? Color.Red : defaultColor;
+
+            if (cpu >= 90 || ramPercent >= 90)
+                this.BackColor = Color.MistyRose;
+            else
+                this.BackColor = isDarkMode ? Color.FromArgb(45, 45, 48) : SystemColors.Control;
+        }
+
+        // [메모리 TOP 5]
         private void UpdateTopProcessesByMemory()
         {
             try
             {
                 var topMemory = Process.GetProcesses()
-                    .OrderByDescending(p => {
-                        try { return p.WorkingSet64; }
-                        catch { return 0; }
-                    })
-                    .Take(5)
-                    .ToList();
+                    .OrderByDescending(p => { try { return p.WorkingSet64; } catch { return 0; } })
+                    .Take(5).ToList();
 
                 lvwTopProcesses.BeginUpdate();
                 lvwTopProcesses.Items.Clear();
                 foreach (var p in topMemory)
                 {
-                    double memMB = p.WorkingSet64 / (1024.0 * 1024.0);
                     ListViewItem item = new ListViewItem(p.ProcessName);
-                    item.SubItems.Add($"{memMB:F1} MB");
+                    item.SubItems.Add($"{(p.WorkingSet64 / 1024.0 / 1024.0):F1} MB");
                     lvwTopProcesses.Items.Add(item);
                 }
                 lvwTopProcesses.EndUpdate();
@@ -84,51 +130,15 @@ namespace Pr
             catch { }
         }
 
-        // [기능 2] 시스템 가동 시간 계산
-        private void UpdateSystemUptime()
-        {
-            uint tickCount = (uint)Environment.TickCount;
-            TimeSpan uptime = TimeSpan.FromMilliseconds(tickCount);
-
-            lblUptime.Text = string.Format("가동 시간: {0}일 {1}시간 {2}분 {3}초",
-                uptime.Days, uptime.Hours, uptime.Minutes, uptime.Seconds);
-        }
-
-        // [기능 3] 리소스 위험 감지 및 시각 경고
-        private void CheckResourceDanger(float cpu, float ramPercent)
-        {
-            // CPU 색상 변경
-            if (cpu >= 90) lblCPU.ForeColor = Color.Red;
-            else if (cpu >= 70) lblCPU.ForeColor = Color.Orange;
-            else lblCPU.ForeColor = Color.Black;
-
-            // RAM 색상 변경
-            if (ramPercent >= 90) lblRAM.ForeColor = Color.Red;
-            else lblRAM.ForeColor = Color.Black;
-
-            // 배경색 경고 (하나라도 90% 넘으면)
-            if (cpu >= 90 || ramPercent >= 90)
-                this.BackColor = Color.DarkRed;
-            else
-                this.BackColor = SystemColors.Control;
-        }
-
-        // 사용하지 않는 이벤트 (지워도 됨)
-        private void Form1_Load(object sender, EventArgs e) { }
-        private void timerResource_Tick(object sender, EventArgs e) { }
-
+        // [작업 관리자 열기 버튼]
         private void btnOpenTaskMgr_Click(object sender, EventArgs e)
         {
-            try
-            {
-                // 윈도우 시스템 폴더에 있는 taskmgr.exe를 실행합니다.
-                Process.Start("taskmgr.exe");
-            }
-            catch (Exception ex)
-            {
-                // 혹시라도 실행에 실패할 경우 에러 메시지를 띄웁니다.
-                MessageBox.Show("작업 관리자를 실행할 수 없습니다: " + ex.Message);
-            }
+            try { Process.Start("taskmgr.exe"); }
+            catch { MessageBox.Show("작업 관리자를 실행할 수 없습니다."); }
+        }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            // 아무 내용도 적지 않아도 됩니다.
         }
     }
 }

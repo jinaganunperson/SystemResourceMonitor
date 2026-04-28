@@ -152,6 +152,7 @@
             this.btnDarkMode.TabIndex = 8;
             this.btnDarkMode.Text = "다크모드";
             this.btnDarkMode.UseVisualStyleBackColor = false;
+            this.btnDarkMode.Click += new System.EventHandler(this.btnDarkMode_Click);
             // 
             // Form1
             // 
