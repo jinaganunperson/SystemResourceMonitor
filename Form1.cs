@@ -108,7 +108,7 @@ namespace Pr
 
             // 배경색 경고 (하나라도 90% 넘으면)
             if (cpu >= 90 || ramPercent >= 90)
-                this.BackColor = Color.MistyRose;
+                this.BackColor = Color.DarkRed;
             else
                 this.BackColor = SystemColors.Control;
         }
