@@ -140,5 +140,10 @@ namespace Pr
         {
             // 아무 내용도 적지 않아도 됩니다.
         }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            this.TopMost = chkAlwaysOnTop.Checked;
+        }
     }
 }

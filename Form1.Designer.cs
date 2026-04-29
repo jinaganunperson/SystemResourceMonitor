@@ -41,6 +41,7 @@
             this.lblUptime = new System.Windows.Forms.Label();
             this.btnOpenTaskMgr = new System.Windows.Forms.Button();
             this.btnDarkMode = new System.Windows.Forms.Button();
+            this.chkAlwaysOnTop = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // lblRAM
@@ -90,7 +91,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("굴림", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.Location = new System.Drawing.Point(19, 23);
+            this.label1.Location = new System.Drawing.Point(19, 35);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(555, 43);
             this.label1.TabIndex = 4;
@@ -123,7 +124,7 @@
             // 
             this.lblUptime.AutoSize = true;
             this.lblUptime.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.lblUptime.Location = new System.Drawing.Point(758, 45);
+            this.lblUptime.Location = new System.Drawing.Point(758, 57);
             this.lblUptime.Name = "lblUptime";
             this.lblUptime.Size = new System.Drawing.Size(110, 24);
             this.lblUptime.TabIndex = 6;
@@ -133,7 +134,7 @@
             // 
             this.btnOpenTaskMgr.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnOpenTaskMgr.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btnOpenTaskMgr.Location = new System.Drawing.Point(580, 36);
+            this.btnOpenTaskMgr.Location = new System.Drawing.Point(580, 48);
             this.btnOpenTaskMgr.Name = "btnOpenTaskMgr";
             this.btnOpenTaskMgr.Size = new System.Drawing.Size(172, 43);
             this.btnOpenTaskMgr.TabIndex = 7;
@@ -154,11 +155,23 @@
             this.btnDarkMode.UseVisualStyleBackColor = false;
             this.btnDarkMode.Click += new System.EventHandler(this.btnDarkMode_Click);
             // 
+            // chkAlwaysOnTop
+            // 
+            this.chkAlwaysOnTop.AutoSize = true;
+            this.chkAlwaysOnTop.Location = new System.Drawing.Point(727, 12);
+            this.chkAlwaysOnTop.Name = "chkAlwaysOnTop";
+            this.chkAlwaysOnTop.Size = new System.Drawing.Size(202, 28);
+            this.chkAlwaysOnTop.TabIndex = 9;
+            this.chkAlwaysOnTop.Text = "항상 위에 표시";
+            this.chkAlwaysOnTop.UseVisualStyleBackColor = true;
+            this.chkAlwaysOnTop.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1135, 563);
+            this.Controls.Add(this.chkAlwaysOnTop);
             this.Controls.Add(this.btnDarkMode);
             this.Controls.Add(this.btnOpenTaskMgr);
             this.Controls.Add(this.lblUptime);
@@ -190,6 +203,7 @@
         private System.Windows.Forms.Label lblUptime;
         private System.Windows.Forms.Button btnOpenTaskMgr;
         private System.Windows.Forms.Button btnDarkMode;
+        private System.Windows.Forms.CheckBox chkAlwaysOnTop;
     }
 }
 
