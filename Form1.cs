@@ -71,9 +71,12 @@ namespace Pr
 
             this.BackColor = backColor;
 
-            foreach (Control c in this.Controls)
-            {
-                if (c is ListView)
+                foreach (Control c in this.Controls)
+                {
+                    c.BackColor = backColor;
+                    c.ForeColor = foreColor;
+
+                    if (c is ListView)
                 {
                     c.BackColor = isDark ? Color.FromArgb(30, 30, 30) : Color.White;
                 }
