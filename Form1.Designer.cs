@@ -158,7 +158,7 @@
             // chkAlwaysOnTop
             // 
             this.chkAlwaysOnTop.AutoSize = true;
-            this.chkAlwaysOnTop.Location = new System.Drawing.Point(727, 12);
+            this.chkAlwaysOnTop.Location = new System.Drawing.Point(722, 12);
             this.chkAlwaysOnTop.Name = "chkAlwaysOnTop";
             this.chkAlwaysOnTop.Size = new System.Drawing.Size(202, 28);
             this.chkAlwaysOnTop.TabIndex = 9;
